@@ -3,10 +3,10 @@ import request from '@/utils/request'
 export default{
   getUserList(searchModel){
     return request({
-      //路径
+      // Path
       url: '/user/list',
       method: 'get',
-      //数据
+      // Data
       params:{
         pageNo:searchModel.pageNo,
         pageSize:searchModel.pageSize,
@@ -82,10 +82,10 @@ export default{
 
   getBodyList(searchModel){
     return request({
-      //路径
+      // Path
       url: '/user/getBodyList',
       method: 'get',
-      //数据
+      // Data
       params:{
         id:searchModel.id,
         pageNo:searchModel.pageNo,
@@ -148,13 +148,13 @@ export default{
 
 
 
-//用户管理自己的身体信息
+// User manages their own body information
   getUserBodyList(searchModel){
     return request({
-      //路径
+      // Path
       url: '/user/getUserBodyList',
       method: 'get',
-      //数据
+      // Data
       params:{
         id:searchModel.id,
         pageNo:searchModel.pageNo,

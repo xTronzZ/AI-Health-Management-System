@@ -1,16 +1,16 @@
 <template>
   <div class="container">
     <div class="box first-box">
-      <div class="title">身体信息</div>
+      <div class="title">Body Information</div>
       <div class="content" style="margin-left: 15%">
         <div class="info">
-          <div class="label">体重：</div>
+          <div class="label">Weight:</div>
           <div class="value">
             {{ bodyInfo.weight }}<span class="unit">kg</span>
           </div>
         </div>
         <div class="info">
-          <div class="label">身高：</div>
+          <div class="label">Height:</div>
           <div class="value">
             {{ bodyInfo.height }}<span class="unit">m</span>
           </div>
@@ -20,33 +20,33 @@
           <div class="value">{{ this.bmiM }}</div>
         </div>
         <div class="info">
-          <div class="label">血糖：</div>
+          <div class="label">Blood Sugar:</div>
           <div class="value">
             {{ bodyInfo.bloodSugar }} <span class="unit">mmol/L</span>
           </div>
         </div>
         <div class="info">
-          <div class="label">血压：</div>
+          <div class="label">Blood Pressure:</div>
           <div class="value">
             {{ bodyInfo.bloodPressure }}<span class="unit">mmHg</span>
           </div>
         </div>
         <div class="info">
-          <div class="label">胆固醇：</div>
+          <div class="label">Cholesterol:</div>
           <div class="value">
             {{ bodyInfo.bloodLipid }} <span class="unit">mmol/l</span>
           </div>
         </div>
         <div class="info">
-          <div class="label">心率：</div>
+          <div class="label">Heart Rate:</div>
           <div class="value">
-            {{ bodyInfo.heartRate }} <span class="unit">次/分钟</span>
+            {{ bodyInfo.heartRate }} <span class="unit">times/min</span>
           </div>
         </div>
         <div class="info">
-          <div class="label">视力：</div>
+          <div class="label">Vision:</div>
           <div class="value">
-            {{ bodyInfo.vision }} <span class="unit">度</span>
+            {{ bodyInfo.vision }} <span class="unit">degrees</span>
           </div>
         </div>
       </div>
@@ -59,17 +59,17 @@
     </div>
 
     <div class="box">
-      <div class="title">疾病分析</div>
+      <div class="title">Disease Analysis</div>
       <div id="diseaseChart" class="content">
         <div class="info">
-          <div class="label_vision">可能的疾病：</div>
+          <div class="label_vision">Possible Diseases:</div>
           <div class="value">{{ this.risk }}<span class="unit"></span></div>
         </div>
         <div class="info">
-          <div class="label_vision" style="color: red">注意：</div>
+          <div class="label_vision" style="color: red">Note:</div>
           <div class="value">
             {{
-              "以上风险只是根据您上传的身体数据进行最基本的分析，并不能作为真正的结果，不管有没有风险，都需要保持运动，如有不舒服的地方请马上就医。"
+              "The above risks are only based on the most basic analysis of the body data you uploaded and cannot be used as real results. Regardless of whether there are risks, you need to maintain exercise. If you feel uncomfortable, please seek medical attention immediately."
             }}<span class="unit"></span>
           </div>
         </div>
@@ -84,7 +84,7 @@
     </div>
 
     <div class="box">
-      <div class="title">基础能量消耗状况</div>
+      <div class="title">Basic Energy Consumption Status</div>
       <el-progress
         type="circle"
         :percentage="Number(this.Standard_hight)"
@@ -99,13 +99,13 @@
         :show-text="true"
       ></el-progress>
       <div style="padding-left: 80px; margin-top: 20px">
-        到达身体年龄的百分比
+        Percentage of reaching body age
       </div>
-      <div style="padding-left: 340px; margin-top: -20px">基本能量消耗</div>
+      <div style="padding-left: 340px; margin-top: -20px">Basic Energy Consumption</div>
     </div>
 
     <div class="box">
-      <div class="title">肥胖分析</div>
+      <div class="title">Obesity Analysis</div>
       <div class="content">
         <div style="display: flex; justify-content: right">
           <el-progress
@@ -115,11 +115,11 @@
           ></el-progress>
         </div>
         <div class="info" style="margin-top: 30px">
-          <div class="label_vision">根据计算：</div>
+          <div class="label_vision">According to calculation:</div>
           <div class="value">{{ determineHealthRisk }}</div>
         </div>
         <div class="info">
-          <div class="label_vision">肥胖可能的风险：</div>
+          <div class="label_vision">Possible risks of obesity:</div>
           <div class="value">{{ Disease_risk }}</div>
         </div>
       </div>
@@ -133,16 +133,16 @@
     </div>
 
     <div class="box">
-      <div class="title">生活习惯分析</div>
+      <div class="title">Lifestyle Analysis</div>
       <div class="content">
         <div class="info">
-          <div class="label_vision">您的习惯如下：</div>
+          <div class="label_vision">Your habits are as follows:</div>
         </div>
         <div class="value" style="margin-left: 20px">{{ this.habits }}</div>
         <div class="info" style="padding-top: 25px">
-          <div class="label_vision">建议：</div>
+          <div class="label_vision">Suggestion:</div>
           <div class="value">
-            阅读运动知识，更好地了解运动的正确姿势和方法，通过了解运动的原理和科学知识，我们可以更好地制定运动计划，减少运动中的风险和不适，避免受伤和疾病的发生。
+            Read exercise knowledge to better understand the correct posture and methods of exercise. By understanding the principles and scientific knowledge of exercise, we can better formulate exercise plans, reduce risks and discomfort during exercise, and avoid injuries and diseases.
           </div>
         </div>
       </div>
@@ -156,20 +156,20 @@
     </div>
 
     <div class="box">
-      <div class="title">视力分析</div>
+      <div class="title">Vision Analysis</div>
       <div class="content">
         <div class="info">
-          <div class="label_vision">您的视力为：</div>
+          <div class="label_vision">Your vision is:</div>
           <div class="value">
             {{ bodyInfo.vision }}<span class="unit"></span>
           </div>
         </div>
         <div class="info">
-          <div class="label_vision">近视等级：</div>
+          <div class="label_vision">Myopia level:</div>
           <div class="value">{{ visionType }}<span class="unit"></span></div>
         </div>
         <div class="info">
-          <div class="label_vision">建议：</div>
+          <div class="label_vision">Suggestion:</div>
           <div class="value">
             {{ visionSuggestion }}<span class="unit"></span>
           </div>
@@ -185,14 +185,14 @@
     </div>
 
     <div class="box">
-      <div class="title">体型判断</div>
+      <div class="title">Body Type Assessment</div>
       <div class="content">
         <div class="info">
-          <div class="label_vision">您的体型属于：</div>
+          <div class="label_vision">Your body type belongs to:</div>
           <div class="value">{{ bodyType }}<span class="unit"></span></div>
         </div>
         <div class="info">
-          <div class="label_vision">建议：</div>
+          <div class="label_vision">Suggestion:</div>
           <div class="value">{{ bodyTypeSuggestion }}</div>
         </div>
       </div>
@@ -206,7 +206,7 @@
     </div>
 
     <div class="boxScore">
-      <div class="titleScore">健康评分</div>
+      <div class="titleScore">Health Score</div>
       <div>{{ this.score }}</div>
     </div>
 
@@ -233,11 +233,11 @@ export default {
 
   computed: {
     bmiM() {
-      // 从bodyInfo中获取身高和体重的值，并转换为 Number 类型
+      // Get height and weight values from bodyInfo and convert to Number type
       const weight = Number(this.bodyInfo.weight);
-      // 计算BMI值
+      // Calculate BMI value
       const bmiValue = weight / (this.bodyInfo.height * this.bodyInfo.height);
-      // 返回计算结果并保留两位小数
+      // Return calculation result and keep two decimal places
       this.bmi = bmiValue.toFixed(2);
       return bmiValue.toFixed(2);
     },
@@ -248,26 +248,26 @@ export default {
     visionType() {
       const vision = this.bodyInfo.vision;
       if (vision >= 600) {
-        return "高度近视";
+        return "High myopia";
       } else if (vision >= 300 && vision <= 600) {
-        return "中度近视";
+        return "Moderate myopia";
       } else if (vision > 0 && vision <= 300) {
-        return "轻度近视";
+        return "Mild myopia";
       } else if (vision === 0) {
-        return "没有近视";
+        return "No myopia";
       }
     },
 
     visionSuggestion() {
       const visionType = this.visionType;
-      if (visionType === "高度近视") {
-        return "积极治疗，建议就医";
-      } else if (visionType === "中度近视") {
-        return "注意保护眼睛，建议定期检查视力";
-      } else if (visionType === "轻度近视") {
-        return "加强锻炼，注意用眼卫生";
-      } else if (visionType === "没有近视") {
-        return "很好，保持生活习惯，注意保护眼睛";
+      if (visionType === "High myopia") {
+        return "Active treatment, recommend medical consultation";
+      } else if (visionType === "Moderate myopia") {
+        return "Pay attention to eye protection, recommend regular vision checkups";
+      } else if (visionType === "Mild myopia") {
+        return "Strengthen exercise, pay attention to eye hygiene";
+      } else if (visionType === "No myopia") {
+        return "Very good, maintain lifestyle habits, pay attention to eye protection";
       }
     },
 
@@ -322,7 +322,7 @@ export default {
         } = await userApi.getBodyInfo();
         this.bodyInfo = bodyInfo;
       } catch (error) {
-        console.log("获取身体信息错误");
+        console.log("获取Body Information错误");
       }
     },
 
@@ -368,7 +368,7 @@ export default {
       }
 
       if (this.bodyInfo.vision > 50) {
-        habits.push("熬夜过多过度劳累");
+        habits.push("熬夜过多过degrees劳累");
       } else {
         habits.push("准时睡觉");
       }
@@ -380,7 +380,7 @@ export default {
       }
 
       if (this.bodyInfo.sleepQuality === "好") {
-        habits.push("熬夜过多过度劳累");
+        habits.push("熬夜过多过degrees劳累");
       } else if (this.bodyInfo.sleepQuality === "一般") {
         habits.push("需要注意睡眠质量");
       } else if (this.bodyInfo.sleepQuality === "差") {

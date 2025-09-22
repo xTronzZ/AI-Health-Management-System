@@ -9,7 +9,7 @@
       label-position="left"
     >
       <div class="title-container">
-        <h3 class="title">欢迎使用个人健康管理系统</h3>
+        <h3 class="title">Welcome to Personal Health Management System</h3>
       </div>
 
       <el-form-item prop="username">
@@ -19,7 +19,7 @@
         <el-input
           ref="username"
           v-model="loginForm.username"
-          placeholder="用户名"
+          placeholder="Username"
           name="username"
           type="text"
           tabindex="1"
@@ -36,7 +36,7 @@
           ref="password"
           v-model="loginForm.password"
           :type="passwordType"
-          placeholder="密码"
+          placeholder="Password"
           name="password"
           tabindex="2"
           auto-complete="on"
@@ -54,14 +54,14 @@
         type="primary"
         style="width: 100%; margin-bottom: 30px"
         @click.native.prevent="handleLogin"
-        >登 陆</el-button
+        >Login</el-button
       >
       <div>
         <el-button
           type="primary"
           style="width: 100%; margin-bottom: 30px; margin-left: 0px"
           @click.native.prevent="handleRegister"
-          >注 册</el-button
+          >Register</el-button
         >
       </div>
     </el-form>
@@ -74,35 +74,35 @@ import { validUsername } from "@/utils/validate";
 export default {
   name: "Login",
   data() {
-    // 定义验证用户名函数
+    // Define username validation function
     const validateUsername = (rule, value, callback) => {
-      // 调用 validUsername 函数判断用户名是否合法
+      // Call validUsername function to check if username is valid
       if (!validUsername(value)) {
-        // 如果不合法则返回错误信息
-        callback(new Error("请输入正确的用户名"));
+        // If invalid, return error message
+        callback(new Error("Please enter a valid username"));
       } else {
-        // 合法则调用 callback() 函数返回验证成功信息
+        // If valid, call callback() function to return validation success message
         callback();
       }
     };
-    // 定义验证密码函数
+    // Define password validation function
     const validatePassword = (rule, value, callback) => {
-      // 判断密码是否小于6位
+      // Check if password is less than 6 characters
       if (value.length < 6) {
-        // 如果小于6位则返回错误信息
-        callback(new Error("输入的密码不能少于6位"));
+        // If less than 6 characters, return error message
+        callback(new Error("Password must be at least 6 characters"));
       } else {
-        // 合法则调用 callback() 函数返回验证成功信息
+        // If valid, call callback() function to return validation success message
         callback();
       }
     };
     return {
-      // 定义表单数据对象
+      // Define form data object
       loginForm: {
         username: "",
         password: "",
       },
-      // 定义表单验证规则
+      // Define form validation rules
       loginRules: {
         username: [
           { required: true, trigger: "blur", validator: validateUsername },
@@ -111,11 +111,11 @@ export default {
           { required: true, trigger: "blur", validator: validatePassword },
         ],
       },
-      // 定义 loading 状态
+      // Define loading state
       loading: false,
-      // 定义密码输入框类型，初始为密码框
+      // Define password input type, initially password field
       passwordType: "password",
-      // 定义重定向路径，初始为 undefined
+      // Define redirect path, initially undefined
       redirect: undefined,
     };
   },
@@ -145,17 +145,17 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
-          this.loading = true; // 显示 loading 状态圈
+          this.loading = true; // Show loading spinner
           this.$store
             .dispatch("user/login", this.loginForm)
             .then(() => {
               localStorage.setItem('username', this.loginForm.username);
-              // 登录成功，跳转到目标路由
+              // Login successful, navigate to target route
               this.$router.push({ path: this.redirect || "/" });
-              this.loading = false; // 隐藏 loading 状态
+              this.loading = false; // Hide loading state
             })
             .catch(() => {
-              this.loading = false; // 隐藏 loading 状态
+              this.loading = false; // Hide loading state
             });
         } else {
           console.log("error submit!!");
@@ -172,29 +172,48 @@ export default {
 </script>
 
 <style lang="scss">
-$bg: #2d3a4b;
-$dark_gray: #889aa4;
-$light_gray: #eee;
+$primary: #667eea;
+$primary-light: #764ba2;
+$dark_gray: #64748b;
+$light_gray: #f8fafc;
 
 .login-container {
   min-height: 100vh;
   width: 100%;
-  background-color: $bg;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url("https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.alicdn.com%2Fimgextra%2Fi4%2F2073126104%2FTB2bOUZjq8lpuFjy0FpXXaGrpXa_%21%212073126104.jpg&refer=http%3A%2F%2Fimg.alicdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1683790222&t=8849124f26235d171450ed628e255b90");
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    animation: float 20s ease-in-out infinite;
+  }
 
   .login-form {
     position: relative;
-    width: 520px;
-    max-width: 100%;
-    padding: 80px 35px 0;
+    width: 420px;
+    max-width: 90%;
+    padding: 48px 40px;
     margin: 0 auto;
     overflow: hidden;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+    /* Fallback for browsers that don't support backdrop-filter */
+    background-color: rgba(255, 255, 255, 0.98);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    z-index: 1;
   }
 
   .tips {
@@ -219,13 +238,20 @@ $light_gray: #eee;
 
   .title-container {
     position: relative;
+    margin-bottom: 40px;
 
     .title {
-      font-size: 26px;
-      color: $dark_gray;
-      margin: 0px auto 40px auto;
+      font-size: 28px;
+      background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      /* Fallback for browsers that don't support background-clip: text */
+      color: $primary;
+      margin: 0;
       text-align: center;
-      font-weight: bold;
+      font-weight: 700;
+      letter-spacing: -0.02em;
     }
   }
 
@@ -247,30 +273,57 @@ $light_gray: #eee;
   .el-input {
     width: 100%;
     border: none;
-    border-radius: 5px;
-    background-color: #f7f7f7;
+    border-radius: 12px;
+    background-color: $light_gray;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #f1f5f9;
+    }
 
     input {
-      padding: 15px;
-      color: $dark_gray;
+      padding: 16px 20px;
+      color: #1e293b;
+      font-size: 16px;
+      border: none;
+      background: transparent;
 
       &::placeholder {
-        color: #ccc;
+        color: #94a3b8;
+        font-weight: 400;
+      }
+
+      &:focus {
+        outline: none;
       }
     }
   }
 
   .el-button {
-    height: 50px;
-    border-radius: 25px;
+    height: 52px;
+    border-radius: 12px;
     font-size: 16px;
-    background-color: $dark_gray;
+    font-weight: 600;
+    background: linear-gradient(135deg, $primary 0%, $primary-light 100%);
     border: none;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 
     &:hover,
     &:focus {
-      background-color: darken($dark_gray, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+
+    &:active {
+      transform: translateY(0);
     }
   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
 }
 </style>

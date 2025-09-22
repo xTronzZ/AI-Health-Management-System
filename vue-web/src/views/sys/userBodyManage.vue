@@ -1,18 +1,18 @@
-<!-- 搜索框和添加按钮，搜索框，以及用户名和手机号的输入框 -->
+<!-- Search box and add button, search box, and input fields for username and phone number -->
 <template>
   <div>
     <el-card id="search">
       <el-row>
         <el-col :span="23">
-          <!-- v-model绑定组件实现双向数据绑定，页面上用户输入的值会同步更新到该属性中 -->
+          <!-- v-model binding component implements two-way data binding, user input values on the page will be synchronized to this property -->
           <el-input
             v-model="searchModel.name"
-            placeholder="请输入昵称"
+            placeholder="Please enter nickname"
             clearable
           ></el-input>
           <el-input
             v-model="searchModel.id"
-            placeholder="请输入ID"
+            placeholder="Please enter ID"
             clearable
           ></el-input>
           <el-button
@@ -20,133 +20,133 @@
             type="primary"
             round
             icon="el-icon-search"
-            >查询</el-button
+            >Search</el-button
           >
         </el-col>
       </el-row>
     </el-card>
 
-    <!-- 结果列表 -->
+    <!-- Results List -->
     <el-card>
       <el-table :data="bodyList" stripe style="width: 100%">
-        <el-table-column type="index" label="序号" width="80"></el-table-column>
+        <el-table-column type="index" label="No." width="80"></el-table-column>
         <el-table-column prop="id" label="ID" width="80"></el-table-column>
-        <el-table-column prop="name" label="昵称" width="80"></el-table-column>
-        <el-table-column prop="age" label="年龄" width="80"></el-table-column>
+        <el-table-column prop="name" label="Nickname" width="80"></el-table-column>
+        <el-table-column prop="age" label="Age" width="80"></el-table-column>
 
         <el-table-column
           prop="gender"
-          label="性别"
+          label="Gender"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="height"
-          label="身高/cm"
+          label="Height/cm"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="weight"
-          label="体重/kg"
+          label="Weight/kg"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="bloodSugar"
-          label="血糖"
+          label="Blood Sugar"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="bloodPressure"
-          label="血压"
+          label="Blood Pressure"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="weight"
-          label="体重/kg"
+          label="Weight/kg"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="bloodLipid"
-          label="血脂"
+          label="Blood Lipid"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="heartRate"
-          label="心率/分钟"
+          label="Heart Rate/min"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="vision"
-          label="视力"
+          label="Vision"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="sleepDuration"
-          label="睡眠时长"
+          label="Sleep Duration"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="sleepQuality"
-          label="睡眠质量"
+          label="Sleep Quality"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="heartRate"
-          label="心率/分钟"
+          label="Heart Rate/min"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="heartRate"
-          label="心率/分钟"
+          label="Heart Rate/min"
           width="80"
         ></el-table-column>
 
-        <el-table-column prop="smoking" label="是否抽烟" width="80">
+        <el-table-column prop="smoking" label="Smoking" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.smoking">是</span>
-            <span v-else>否</span>
+            <span v-if="scope.row.smoking">Yes</span>
+            <span v-else>No</span>
           </template></el-table-column
         >
 
-        <el-table-column prop="drinking" label="是否喝酒" width="80">
+        <el-table-column prop="drinking" label="Drinking" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.smoking">是</span>
-            <span v-else>否</span>
+            <span v-if="scope.row.smoking">Yes</span>
+            <span v-else>No</span>
           </template></el-table-column
         >
 
-        <el-table-column prop="exercise" label="是否运动" width="80">
+        <el-table-column prop="exercise" label="Exercise" width="80">
           <template slot-scope="scope">
-            <span v-if="scope.row.smoking">是</span>
-            <span v-else>否</span>
+            <span v-if="scope.row.smoking">Yes</span>
+            <span v-else>No</span>
           </template></el-table-column
         >
 
         <el-table-column
           prop="foodTypes"
-          label="喜好食物"
+          label="Food Preference"
           width="80"
         ></el-table-column>
 
         <el-table-column
           prop="waterConsumption"
-          label="饮水量"
+          label="Water Intake"
           width="80"
         ></el-table-column>
 
-        <el-table-column label="操作" width="180">
-          <!-- 删除和修改按钮 -->
+        <el-table-column label="Actions" width="180">
+          <!-- Delete and Edit Buttons -->
           <template slot-scope="scope">
             <el-button
               @click="openEditUi(scope.row.id)"
@@ -165,7 +165,7 @@
       </el-table>
     </el-card>
 
-    <!-- 分页功能 -->
+    <!-- Pagination -->
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -177,27 +177,27 @@
     >
     </el-pagination>
 
-    <!-- 用户编辑信息弹出框 -->
+    <!-- User Edit Dialog -->
     <el-dialog
       @close="clearForm"
       :title="title"
       :visible.sync="dialogFormVisible"
     >
       <el-form :model="bodyForm" ref="bodyFormRef">
-        <el-form-item label="昵称" prop="name" :label-width="formLabelWidth">
+        <el-form-item label="Nickname" prop="name" :label-width="formLabelWidth">
           <el-input v-model="bodyForm.name" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="年龄" prop="age" :label-width="formLabelWidth">
+        <el-form-item label="Age" prop="age" :label-width="formLabelWidth">
           <el-input v-model="bodyForm.age" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="性别" prop="gender" :label-width="formLabelWidth">
+        <el-form-item label="Gender" prop="gender" :label-width="formLabelWidth">
           <el-input v-model="bodyForm.gender" autocomplete="off"></el-input>
         </el-form-item>
 
         <el-form-item
-          label="身高/cm"
+          label="Height/cm"
           prop="height"
           :label-width="formLabelWidth"
         >
@@ -205,7 +205,7 @@
         </el-form-item>
 
         <el-form-item
-          label="体重/kg"
+          label="Weight/kg"
           prop="weight"
           :label-width="formLabelWidth"
         >
@@ -213,7 +213,7 @@
         </el-form-item>
 
         <el-form-item
-          label="血糖"
+          label="Blood Sugar"
           prop="bloodSugar"
           :label-width="formLabelWidth"
         >
@@ -221,7 +221,7 @@
         </el-form-item>
 
         <el-form-item
-          label="血压"
+          label="Blood Pressure"
           prop="bloodPressure"
           :label-width="formLabelWidth"
         >
@@ -232,7 +232,7 @@
         </el-form-item>
 
         <el-form-item
-          label="血脂"
+          label="Blood Lipid"
           prop="bloodLipid"
           :label-width="formLabelWidth"
         >
@@ -240,19 +240,19 @@
         </el-form-item>
 
         <el-form-item
-          label="心率/分钟"
+          label="Heart Rate/min"
           prop="weight"
           :label-width="formLabelWidth"
         >
           <el-input v-model="bodyForm.heartRate" autocomplete="off"></el-input>
         </el-form-item>
 
-        <el-form-item label="视力" prop="vision" :label-width="formLabelWidth">
+        <el-form-item label="Vision" prop="vision" :label-width="formLabelWidth">
           <el-input v-model="bodyForm.vision" autocomplete="off"></el-input>
         </el-form-item>
 
         <el-form-item
-          label="睡眠时长/h"
+          label="Sleep Duration/h"
           prop="sleepDuration"
           :label-width="formLabelWidth"
         >
@@ -263,19 +263,19 @@
         </el-form-item>
 
         <el-form-item
-          label="睡眠质量"
+          label="Sleep Quality"
           prop="sleepQuality"
           :label-width="formLabelWidth"
         >
           <el-radio-group v-model="bodyForm.sleepQuality">
-            <el-radio :label="1">好</el-radio>
-            <el-radio :label="2">一般</el-radio>
-            <el-radio :label="3">差</el-radio>
+            <el-radio :label="1">Good</el-radio>
+            <el-radio :label="2">Fair</el-radio>
+            <el-radio :label="3">Poor</el-radio>
           </el-radio-group>
         </el-form-item>
 
         <el-form-item
-          label="是否吸烟"
+          label="Smoking"
           prop="smoking"
           :label-width="formLabelWidth"
         >
@@ -286,7 +286,7 @@
         </el-form-item>
 
         <el-form-item
-          label="是否喝酒"
+          label="Drinking"
           prop="drinking"
           :label-width="formLabelWidth"
         >
@@ -297,7 +297,7 @@
         </el-form-item>
 
         <el-form-item
-          label="是否运动"
+          label="Exercise"
           prop="exercise"
           :label-width="formLabelWidth"
         >
@@ -305,25 +305,25 @@
         </el-form-item>
 
         <el-form-item
-          label="喜好食物"
+          label="Food Preference"
           prop="foodTypes"
           :label-width="formLabelWidth"
         >
           <el-select
             v-model="bodyForm.foodTypes"
-            placeholder="请选择摄入较多的食物种类"
+            placeholder="Please select food type you consume more"
           >
-            <el-option label="蔬菜" value="蔬菜"></el-option>
-            <el-option label="水果" value="水果"></el-option>
-            <el-option label="肉类" value="肉类"></el-option>
-            <el-option label="鱼类" value="鱼类"></el-option>
-            <el-option label="豆类" value="豆类"></el-option>
-            <el-option label="谷物" value="谷物"></el-option>
+            <el-option label="Vegetables" value="Vegetables"></el-option>
+            <el-option label="Fruits" value="Fruits"></el-option>
+            <el-option label="Meat" value="Meat"></el-option>
+            <el-option label="Fish" value="Fish"></el-option>
+            <el-option label="Beans" value="Beans"></el-option>
+            <el-option label="Grains" value="Grains"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item
-          label="饮水量/ml"
+          label="Water Intake/ml"
           prop="waterConsumption"
           :label-width="formLabelWidth"
         >
@@ -335,8 +335,8 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="updateBody">确 定</el-button>
+        <el-button @click="dialogFormVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="updateBody">Confirm</el-button>
       </div>
     </el-dialog>
   </div>
@@ -347,24 +347,24 @@ import userApi from "@/api/userManage";
 export default {
   data() {
     return {
-      bodyForm: {}, //初始化为一个空对象
+      bodyForm: {}, // Initialize as an empty object
       bodyList: [],
-      //左边宽度
+      // Left width
       formLabelWidth: "135px",
-      //设置默认值不可见
+      // Set default value to invisible
       dialogFormVisible: false,
       title: "",
       total: 0,
       searchModel: {
         pageNo: 1,
-        // 默认显示数量
+        // Default display count
         pageSize: 10,
       },
-      //表单规则配置
+      // Form validation rules configuration
 
       rules: {
         bodyType: [
-          { required: true, message: "请输入运动类型", trigger: "blur" },
+          { required: true, message: "Please enter sport type", trigger: "blur" },
         ],
       },
     };
@@ -373,23 +373,23 @@ export default {
   methods: {
     updateBody() {
       let isOk = true;
-      //触发表单的验证
+      // Trigger form validation
       this.$refs.bodyFormRef.validate((valid) => {
-        // 这边只有校验失败的时候才会进来,在外面定义一个 isok,校验失败会将他改成 false
+        // This only comes in when validation fails, define isok outside, set it to false when validation fails
         isOk = valid;
       });
 
       if (isOk) {
-        //提交验证给后台
+        // Submit validation to backend
         userApi.updateBody(this.bodyForm).then((response) => {
-          //成功提示
+          // Success message
           this.$message({
             message: response.message,
             type: "success",
           });
-          //关闭对话框
+          // Close dialog
           this.dialogFormVisible = false;
-          //刷新表格数据
+          // Refresh table data
           this.getBodyList();
         });
       } else {
@@ -398,14 +398,14 @@ export default {
       }
     },
 
-    //清理表单数据
+    // Clear form data
     clearForm() {
       this.bodyForm = {};
-      //清除表单校验的提示信息
+      // Clear form validation messages
       this.$refs.bodyFormRef.clearValidate();
     },
     handleSizeChange(pageSize) {
-      //数据更新
+      // Data update
       this.searchModel.pageSize = pageSize;
       this.getBodyList();
     },
@@ -414,21 +414,21 @@ export default {
       this.getBodyList();
     },
 
-    //用于查询用户列表
+    // Used to query user list
     getBodyList() {
       userApi.getBodyList(this.searchModel).then((response) => {
         console.log(response);
 
         this.bodyList = response.data.rows;
-        // 将查询结果中的 total 属性赋值给 total
+        // Assign the total property from query results to total
         this.total = response.data.total;
         console.log(this.bodyList);
       });
     },
 
     openEditUi(id) {
-      this.title = "修改身体信息";
-      //根据id查询用户数据
+        this.title = "Edit Body Information";
+      // Query user data by id
       userApi.getBodyById(id).then((response) => {
         this.bodyForm = response.data;
       });
@@ -437,9 +437,9 @@ export default {
     },
 
     deleteBody(body) {
-      this.$confirm(`确认删除 ${body.name} 这个身体信息吗？`, "提示", {
-        confirmButtonText: "确定",
-        cancelButtonText: "取消",
+      this.$confirm(`Are you sure you want to delete body information for ${body.name}?`, "Confirm", {
+        confirmButtonText: "Confirm",
+        cancelButtonText: "Cancel",
         type: "warning",
       })
         .then(() => {
@@ -454,13 +454,13 @@ export default {
         .catch(() => {
           this.$message({
             type: "info",
-            message: "已取消删除",
+            message: "Deletion cancelled",
           });
         });
     },
   },
 
-  //加载时就查询一次
+  // Query once when loading
   created() {
     this.getBodyList();
     console.log(this.bodyList);
@@ -476,7 +476,7 @@ export default {
   width: 43%;
 }
 
-/* 很美观的CSS样式 */
+/* Beautiful CSS styles */
 /* body {
     background: linear-gradient(to right, lightblue, lightpink);
     margin: 0;
@@ -484,7 +484,7 @@ export default {
     font-family: Arial, Helvetica, sans-serif;
   } */
 
-/* 很美观的CSS卡片 */
+/* Beautiful CSS cards */
 .el-card {
   width: 80%;
   margin: 20px auto;
@@ -493,13 +493,13 @@ export default {
   overflow: hidden;
 }
 
-/* 很美观的CSS表格 */
+/* Beautiful CSS tables */
 .el-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-/* 很美观的CSS表格标题 */
+/* Beautiful CSS table headers */
 .el-table-column {
   background-color: lightblue;
   color: white;
@@ -508,7 +508,7 @@ export default {
   text-align: center;
 }
 
-/* 很美观的CSS表格数据 */
+/* Beautiful CSS table data */
 .el-table-column[type="index"],
 .el-table-column[prop="id"],
 .el-table-column[prop="username"],
@@ -521,7 +521,7 @@ export default {
   text-align: center;
 }
 
-/* 很美观的CSS表格数据悬停效果 */
+/* Beautiful CSS table data hover effects */
 .el-table-column[type="index"]:hover,
 .el-table-column[prop="id"]:hover,
 .el-table-column[prop="username"]:hover,
@@ -531,12 +531,12 @@ export default {
   color: white;
 }
 
-/* 很美观的CSS按钮悬停效果 */
+/* Beautiful CSS button hover effects */
 .el-button:hover {
   transform: scale(1.2);
 }
 
-/* 和这个代码一样的CSS */
+/* CSS similar to this code */
 .el-pagination {
   display: flex;
   align-items: center;
@@ -544,45 +544,45 @@ export default {
   margin: 20px;
 }
 
-/* 和这个代码一样的CSS总数 */
+/* CSS total similar to this code */
 .el-pagination__total {
   color: #606266;
   margin-right: 20px;
 }
 
-/* 和这个代码一样的CSS每页显示条数 */
+/* CSS page size similar to this code */
 .el-pagination__sizes {
   display: flex;
   align-items: center;
   margin-right: 20px;
 }
 
-/* 和这个代码一样的CSS每页显示条数选择器 */
+/* CSS page size selector similar to this code */
 .el-pagination__sizes .el-select {
   width: 100px;
 }
 
-/* 和这个代码一样的CSS上一页按钮 */
+/* CSS previous page button similar to this code */
 .el-pagination__prev {
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
 
-/* 和这个代码一样的CSS上一页按钮图标 */
+/* CSS previous page button icon similar to this code */
 .el-pagination__prev .el-icon {
   font-size: 20px;
   color: #409eff;
 }
 
-/* 和这个代码一样的CSS页码 */
+/* CSS page numbers similar to this code */
 .el-pagination__pager {
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
 
-/* 和这个代码一样的CSS页码按钮 */
+/* CSS page number buttons similar to this code */
 .el-pagination__pager button {
   width: 30px;
   height: 30px;
@@ -594,43 +594,43 @@ export default {
   transition: all 0.3s ease-in-out;
 }
 
-/* 和这个代码一样的CSS页码按钮悬停效果 */
+/* CSS page number button hover effects similar to this code */
 .el-pagination__pager button:hover {
   background-color: #409eff;
   color: white;
 }
 
-/* 和这个代码一样的CSS当前页码按钮 */
+/* CSS current page number button similar to this code */
 .el-pagination__pager button.is-active {
   background-color: #409eff;
   color: white;
 }
 
-/* 和这个代码一样的CSS下一页按钮 */
+/* CSS next page button similar to this code */
 .el-pagination__next {
   display: flex;
   align-items: center;
   margin-right: 10px;
 }
 
-/* 和这个代码一样的CSS下一页按钮图标 */
+/* CSS next page button icon similar to this code */
 .el-pagination__next .el-icon {
   font-size: 20px;
   color: #409eff;
 }
 
-/* 和这个代码一样的CSS跳转输入框 */
+/* CSS jump input box similar to this code */
 .el-pagination__jump {
   display: flex;
   align-items: center;
 }
 
-/* 和这个代码一样的CSS跳转输入框标签 */
+/* CSS jump input box label similar to this code */
 .el-pagination__jump label {
   color: #606266;
 }
 
-/* 和这个代码一样的CSS跳转输入框输入框 */
+/* CSS jump input box input similar to this code */
 .el-pagination__jump input {
   width: 50px;
   height: 30px;

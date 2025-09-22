@@ -32,6 +32,6 @@
   </script>
   
   <style>
-  /* 样式代码 */
+  /* Style code */
   </style>
   

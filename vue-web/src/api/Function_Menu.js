@@ -35,10 +35,10 @@ export default{
 
       getSportList(searchModel){
         return request({
-          //路径
+          // Path
           url: '/sport/getSportList',
           method: 'get',
-          //数据
+          // Data
           params:{
             pageNo:searchModel.pageNo,
             pageSize:searchModel.pageSize,
@@ -109,10 +109,10 @@ export default{
 
       getDetailList(searchModel){
         return request({
-          //路径
+          // Path
           url: '/detail/getDetailList',
           method: 'get',
-          //数据
+          // Data
           params:{
             pageNo:searchModel.pageNo,
             pageSize:searchModel.pageSize,

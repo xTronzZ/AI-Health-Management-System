@@ -16,13 +16,13 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/change_Password">
-            <el-dropdown-item> 修改密码 </el-dropdown-item>
+            <el-dropdown-item> Change Password </el-dropdown-item>
           </router-link>
           <a target="_blank" href="wwww.baidu.com">
-            <el-dropdown-item>主页</el-dropdown-item>
+            <el-dropdown-item>Home</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
-            <span style="display: block">退出账户</span>
+            <span style="display: block">Logout</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -60,22 +60,29 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 60px;
   overflow: hidden;
   position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  /* Fallback for browsers that don't support backdrop-filter */
+  background-color: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 
   .hamburger-container {
-    line-height: 46px;
+    line-height: 60px;
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: all 0.3s ease;
     -webkit-tap-highlight-color: transparent;
+    padding: 0 20px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.025);
+      background: rgba(102, 126, 234, 0.1);
+      transform: scale(1.05);
     }
   }
 
@@ -86,7 +93,7 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    line-height: 50px;
+    line-height: 60px;
 
     &:focus {
       outline: none;
@@ -121,7 +128,14 @@ export default {
           cursor: pointer;
           width: 40px;
           height: 40px;
-          border-radius: 10px;
+          border-radius: 50%;
+          border: 2px solid rgba(102, 126, 234, 0.3);
+          transition: all 0.3s ease;
+          
+          &:hover {
+            border-color: rgba(102, 126, 234, 0.8);
+            transform: scale(1.1);
+          }
         }
 
         .el-icon-caret-bottom {
