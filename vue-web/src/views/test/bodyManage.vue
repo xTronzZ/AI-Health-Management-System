@@ -1,128 +1,128 @@
-<!-- 搜索框和添加按钮，搜索框，以及用户名和手机号的输入框 -->
+<!-- Search box and add button, search box, and input fields for username and phone number -->
 <template>
     <div>
   
-      <!-- 结果列表 -->
+      <!-- Results List -->
       <el-card>
         <el-table :data="bodyList" stripe style="width: 100%">
-          <el-table-column type="index" label="序号" width="50"></el-table-column>
-          <el-table-column prop="date" label="上传时间" width="100" :formatter="formatDate"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="80"></el-table-column>
-          <el-table-column prop="age" label="年龄" width="80"></el-table-column>
+          <el-table-column type="index" label="No." width="50"></el-table-column>
+          <el-table-column prop="date" label="Upload Time" width="100" :formatter="formatDate"></el-table-column>
+          <el-table-column prop="name" label="Name" width="80"></el-table-column>
+          <el-table-column prop="age" label="Age" width="80"></el-table-column>
   
           <el-table-column
             prop="gender"
-            label="性别"
+            label="Gender"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="height"
-            label="身高/cm"
+            label="Height/cm"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="weight"
-            label="体重/kg"
+            label="Weight/kg"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="bloodSugar"
-            label="血糖"
+            label="Blood Sugar"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="bloodPressure"
-            label="血压"
+            label="Blood Pressure"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="weight"
-            label="体重/kg"
+            label="Weight/kg"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="bloodLipid"
-            label="血脂"
+            label="Blood Lipid"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="heartRate"
-            label="心率/分钟"
+            label="Heart Rate/min"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="vision"
-            label="视力"
+            label="Vision"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="sleepDuration"
-            label="睡眠时长"
+            label="Sleep Duration"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="sleepQuality"
-            label="睡眠质量"
+            label="Sleep Quality"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="heartRate"
-            label="心率/分钟"
+            label="Heart Rate/min"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="heartRate"
-            label="心率/分钟"
+            label="Heart Rate/min"
             width="80"
           ></el-table-column>
   
-          <el-table-column prop="smoking" label="是否抽烟" width="80">
+          <el-table-column prop="smoking" label="Smoking" width="80">
             <template slot-scope="scope">
-              <span v-if="scope.row.smoking">是</span>
-              <span v-else>否</span>
+              <span v-if="scope.row.smoking">Yes</span>
+              <span v-else>No</span>
             </template></el-table-column
           >
   
-          <el-table-column prop="drinking" label="是否喝酒" width="80">
+          <el-table-column prop="drinking" label="Drinking" width="80">
             <template slot-scope="scope">
-              <span v-if="scope.row.smoking">是</span>
-              <span v-else>否</span>
+              <span v-if="scope.row.drinking">Yes</span>
+              <span v-else>No</span>
             </template></el-table-column
           >
   
-          <el-table-column prop="exercise" label="是否运动" width="80">
+          <el-table-column prop="exercise" label="Exercise" width="80">
             <template slot-scope="scope">
-              <span v-if="scope.row.smoking">是</span>
-              <span v-else>否</span>
+              <span v-if="scope.row.exercise">Yes</span>
+              <span v-else>No</span>
             </template></el-table-column
           >
   
           <el-table-column
             prop="foodTypes"
-            label="喜好食物"
+            label="Preferred Food"
             width="80"
           ></el-table-column>
   
           <el-table-column
             prop="waterConsumption"
-            label="饮水量"
+            label="Water Intake"
             width="80"
           ></el-table-column>
   
-          <el-table-column label="操作" width="180">
-            <!-- 删除和修改按钮 -->
+          <el-table-column label="Actions" width="180">
+            <!-- Delete and Edit Buttons -->
             <template slot-scope="scope">
               <el-button
                 @click="openEditUi(scope.row.notesid)"
@@ -141,7 +141,7 @@
         </el-table>
       </el-card>
   
-      <!-- 分页功能 -->
+      <!-- Pagination -->
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -153,27 +153,27 @@
       >
       </el-pagination>
   
-      <!-- 用户编辑信息弹出框 -->
+      <!-- User Edit Information Dialog -->
       <el-dialog
         @close="clearForm"
         :title="title"
         :visible.sync="dialogFormVisible"
       >
         <el-form :model="bodyForm" ref="bodyFormRef">
-          <el-form-item label="昵称" prop="name" :label-width="formLabelWidth">
+          <el-form-item label="Name" prop="name" :label-width="formLabelWidth">
             <el-input v-model="bodyForm.name" autocomplete="off"></el-input>
           </el-form-item>
   
-          <el-form-item label="年龄" prop="age" :label-width="formLabelWidth">
+          <el-form-item label="Age" prop="age" :label-width="formLabelWidth">
             <el-input v-model="bodyForm.age" autocomplete="off"></el-input>
           </el-form-item>
   
-          <el-form-item label="性别" prop="gender" :label-width="formLabelWidth">
+          <el-form-item label="Gender" prop="gender" :label-width="formLabelWidth">
             <el-input v-model="bodyForm.gender" autocomplete="off"></el-input>
           </el-form-item>
   
           <el-form-item
-            label="身高/cm"
+            label="Height/cm"
             prop="height"
             :label-width="formLabelWidth"
           >
@@ -181,7 +181,7 @@
           </el-form-item>
   
           <el-form-item
-            label="体重/kg"
+            label="Weight/kg"
             prop="weight"
             :label-width="formLabelWidth"
           >
@@ -189,7 +189,7 @@
           </el-form-item>
   
           <el-form-item
-            label="血糖"
+            label="Blood Sugar"
             prop="bloodSugar"
             :label-width="formLabelWidth"
           >
@@ -197,7 +197,7 @@
           </el-form-item>
   
           <el-form-item
-            label="血压"
+            label="Blood Pressure"
             prop="bloodPressure"
             :label-width="formLabelWidth"
           >
@@ -208,7 +208,7 @@
           </el-form-item>
   
           <el-form-item
-            label="血脂"
+            label="Blood Lipid"
             prop="bloodLipid"
             :label-width="formLabelWidth"
           >
@@ -216,19 +216,19 @@
           </el-form-item>
   
           <el-form-item
-            label="心率/分钟"
+            label="Heart Rate/min"
             prop="weight"
             :label-width="formLabelWidth"
           >
             <el-input v-model="bodyForm.heartRate" autocomplete="off"></el-input>
           </el-form-item>
   
-          <el-form-item label="视力" prop="vision" :label-width="formLabelWidth">
+          <el-form-item label="Vision" prop="vision" :label-width="formLabelWidth">
             <el-input v-model="bodyForm.vision" autocomplete="off"></el-input>
           </el-form-item>
   
           <el-form-item
-            label="睡眠时长/h"
+            label="Sleep Duration/h"
             prop="sleepDuration"
             :label-width="formLabelWidth"
           >
@@ -239,19 +239,19 @@
           </el-form-item>
   
           <el-form-item
-            label="睡眠质量"
+            label="Sleep Quality"
             prop="sleepQuality"
             :label-width="formLabelWidth"
           >
             <el-radio-group v-model="bodyForm.sleepQuality">
-              <el-radio :label="1">好</el-radio>
-              <el-radio :label="2">一般</el-radio>
-              <el-radio :label="3">差</el-radio>
+              <el-radio :label="1">Good</el-radio>
+              <el-radio :label="2">Average</el-radio>
+              <el-radio :label="3">Poor</el-radio>
             </el-radio-group>
           </el-form-item>
   
           <el-form-item
-            label="是否吸烟"
+            label="Smoking"
             prop="smoking"
             :label-width="formLabelWidth"
           >
@@ -262,7 +262,7 @@
           </el-form-item>
   
           <el-form-item
-            label="是否喝酒"
+            label="Drinking"
             prop="drinking"
             :label-width="formLabelWidth"
           >
@@ -273,7 +273,7 @@
           </el-form-item>
   
           <el-form-item
-            label="是否运动"
+            label="Exercise"
             prop="exercise"
             :label-width="formLabelWidth"
           >
@@ -281,25 +281,25 @@
           </el-form-item>
   
           <el-form-item
-            label="喜好食物"
+            label="Preferred Food"
             prop="foodTypes"
             :label-width="formLabelWidth"
           >
             <el-select
               v-model="bodyForm.foodTypes"
-              placeholder="请选择摄入较多的食物种类"
+              placeholder="Please select the food type you consume more"
             >
-              <el-option label="蔬菜" value="蔬菜"></el-option>
-              <el-option label="水果" value="水果"></el-option>
-              <el-option label="肉类" value="肉类"></el-option>
-              <el-option label="鱼类" value="鱼类"></el-option>
-              <el-option label="豆类" value="豆类"></el-option>
-              <el-option label="谷物" value="谷物"></el-option>
+              <el-option label="Vegetables" value="Vegetables"></el-option>
+              <el-option label="Fruits" value="Fruits"></el-option>
+              <el-option label="Meat" value="Meat"></el-option>
+              <el-option label="Fish" value="Fish"></el-option>
+              <el-option label="Beans" value="Beans"></el-option>
+              <el-option label="Grains" value="Grains"></el-option>
             </el-select>
           </el-form-item>
   
           <el-form-item
-            label="饮水量/ml"
+            label="Water Intake/ml"
             prop="waterConsumption"
             :label-width="formLabelWidth"
           >
@@ -311,8 +311,8 @@
         </el-form>
   
         <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="updateBody">确 定</el-button>
+          <el-button @click="dialogFormVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="updateBody">Confirm</el-button>
         </div>
       </el-dialog>
     </div>
@@ -340,7 +340,7 @@
   
         rules: {
           bodyType: [
-            { required: true, message: "请输入运动类型", trigger: "blur" },
+            { required: true, message: "Please enter sport type", trigger: "blur" },
           ],
         },
       };
@@ -358,7 +358,7 @@
         if (isOk) {
           //提交验证给后台
           userApi.updateUserBody(this.bodyForm).then((response) => {
-            //成功提示
+            //成功Confirm
             this.$message({
               message: response.message,
               type: "success",
@@ -377,7 +377,7 @@
       //清理表单数据
       clearForm() {
         this.bodyForm = {};
-        //清除表单校验的提示信息
+        //清除表单校验的Confirm信息
         this.$refs.bodyFormRef.clearValidate();
       },
       handleSizeChange(pageSize) {
@@ -403,7 +403,7 @@
   
       openEditUi(notesid) {
         console.log(notesid)
-        this.title = "修改身体信息";
+        this.title = "Edit Body Information";
         //根据id查询用户数据
         userApi.getUserBodyById(notesid).then((response) => {
           this.bodyForm = response.data;
@@ -413,9 +413,9 @@
       },
   
       deleteUserBody(body) {
-        this.$confirm(`确认删除 ${body.name} 这个身体信息吗？`, "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
+        this.$confirm(`Are you sure you want to delete ${body.name} this body information?`, "Confirm", {
+          confirmButtonText: "Confirm",
+          cancelButtonText: "Cancel",
           type: "warning",
         })
           .then(() => {
@@ -431,7 +431,7 @@
           .catch(() => {
             this.$message({
               type: "info",
-              message: "已取消删除",
+              message: "已Cancel删除",
             });
           });
       },

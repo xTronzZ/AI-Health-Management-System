@@ -2,7 +2,12 @@
 
 .el-breadcrumb__inner,
 .el-breadcrumb__inner a {
-  font-weight: 400 !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+}
+
+.el-breadcrumb__separator {
+  color: #cbd5e1 !important;
 }
 
 .el-upload {
@@ -22,6 +27,30 @@
   left: 0;
   position: relative;
   margin: 0 auto;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  /* Fallback for browsers that don't support backdrop-filter */
+  background-color: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.el-dialog__header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 16px 16px 0 0;
+  padding: 20px 24px;
+}
+
+.el-dialog__title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.el-dialog__headerbtn .el-dialog__close {
+  color: white;
+  font-size: 20px;
 }
 
 // refine element ui upload
@@ -38,12 +67,140 @@
 
 // dropdown
 .el-dropdown-menu {
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Fallback for browsers that don't support backdrop-filter */
+  background-color: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+  
   a {
-    display: block
+    display: block;
+    padding: 12px 16px;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 4px 8px;
+    
+    &:hover {
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+    }
   }
 }
 
 // to fix el-date-picker css style
 .el-range-separator {
   box-sizing: content-box;
+}
+
+// Modern button styles
+.el-button {
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: none;
+  
+  &.el-button--primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+    }
+  }
+  
+  &.el-button--success {
+    background: linear-gradient(135deg, #00d4aa 0%, #00b894 100%);
+    box-shadow: 0 4px 15px rgba(0, 212, 170, 0.4);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(0, 212, 170, 0.6);
+    }
+  }
+  
+  &.el-button--warning {
+    background: linear-gradient(135deg, #ffa726 0%, #ff9800 100%);
+    box-shadow: 0 4px 15px rgba(255, 167, 38, 0.4);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 167, 38, 0.6);
+    }
+  }
+  
+  &.el-button--danger {
+    background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+    box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 87, 34, 0.6);
+    }
+  }
+}
+
+// Modern form styles
+.el-input__inner {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+}
+
+.el-select .el-input__inner {
+  border-radius: 8px;
+}
+
+.el-textarea__inner {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+  }
+}
+
+// Modern table styles
+.el-table {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  
+  th {
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #475569;
+    font-weight: 600;
+  }
+  
+  tr:hover td {
+    background-color: rgba(102, 126, 234, 0.05);
+  }
+}
+
+// Modern card styles
+.el-card {
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* Fallback for browsers that don't support backdrop-filter */
+  background-color: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.95);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  }
 }

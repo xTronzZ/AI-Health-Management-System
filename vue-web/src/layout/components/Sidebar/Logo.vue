@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      title: '个人健康管理系统',
+      title: 'Personal Health Management System',
       logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
     }
   }
@@ -44,11 +44,12 @@ export default {
 .sidebar-logo-container {
   position: relative;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
-  background: #2b2f3a;
+  height: 60px;
+  line-height: 60px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   text-align: center;
   overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 
   & .sidebar-logo-link {
     height: 100%;
@@ -65,11 +66,12 @@ export default {
       display: inline-block;
       margin: 0;
       color: #fff;
-      font-weight: 600;
-      line-height: 50px;
-      font-size: 14px;
-      font-family: Avenir, Helvetica Neue, Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      line-height: 60px;
+      font-size: 16px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       vertical-align: middle;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
     }
   }
 

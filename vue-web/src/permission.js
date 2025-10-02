@@ -37,7 +37,7 @@ router.beforeEach(async(to, from, next) => {
           // get user info
           await store.dispatch('user/getInfo')
 
-          // 路由转换
+          // Route conversion
           let myRoutes = myFilterAsyncRoutes(store.getters.menuList);
           // 404
           myRoutes.push({
@@ -45,11 +45,11 @@ router.beforeEach(async(to, from, next) => {
               redirect: '/404',
               hidden: true
           });
-          // 动态添加路由
+          // Dynamically add routes
           router.addRoutes(myRoutes);
-          // 存至全局变量
+          // Store to global variable
           global.myRoutes = myRoutes;
-          // 防止刷新后页面空白
+          // Prevent blank page after refresh
           next({...to,replace:true})  
 
         } catch (error) {
@@ -83,19 +83,19 @@ router.afterEach(() => {
 
 
 function myFilterAsyncRoutes(menuList) {
-  menuList.filter(menu => { // 对menuList数组进行过滤操作
-    if (menu.component === 'Layout') { // 如果menu的component属性为'Layout'
-      menu.component = Layout // 则将其赋值为Layout组件
-      // console.log(menu.component); // 打印出menu的component属性
+  menuList.filter(menu => { // Filter the menuList array
+    if (menu.component === 'Layout') { // If menu's component property is 'Layout'
+      menu.component = Layout // Then assign it to Layout component
+      // console.log(menu.component); // Print out menu's component property
     } else {
-      menu.component = require(`@/views/${menu.component}.vue`).default // 否则，根据menu的component属性动态加载对应的vue组件
+      menu.component = require(`@/views/${menu.component}.vue`).default // Otherwise, dynamically load the corresponding vue component based on menu's component property
     }
-    // 递归处理子菜单
-    if (menu.children && menu.children.length) { // 如果menu有子菜单，且子菜单数组长度大于0
-      menu.children = myFilterAsyncRoutes(menu.children) // 则递归调用myFilterAsyncRoutes函数对子菜单进行处理
+    // Recursively process submenus
+    if (menu.children && menu.children.length) { // If menu has submenus and submenu array length is greater than 0
+      menu.children = myFilterAsyncRoutes(menu.children) // Then recursively call myFilterAsyncRoutes function to process submenus
     }
-    return true // filter函数返回true，使得menu能够被保留在新的数组中
+    return true // filter function returns true, allowing menu to be retained in the new array
   })
-  return menuList; // 返回已处理好的菜单数组
+  return menuList; // Return the processed menu array
 }
 

@@ -1,13 +1,13 @@
-<!-- 搜索框和添加按钮，搜索框，以及用户名和手机号的输入框 -->
+<!-- Search box and add button, search box, and input fields for username and phone number -->
 <template>
     <div>
       <el-card id="search">
         <el-row>
           <el-col :span="23">
-            <!-- v-model绑定组件实现双向数据绑定，页面上用户输入的值会同步更新到该属性中 -->
+            <!-- v-model binding component implements two-way data binding, user input values on the page will be synchronized to this property -->
             <el-input
               v-model="searchModel.sportType"
-              placeholder="运动类型"
+              placeholder="Sport Type"
               clearable
             ></el-input>
             <el-button
@@ -15,7 +15,7 @@
               type="primary"
               round
               icon="el-icon-search"
-              >查询</el-button
+              >Search</el-button
             >
           </el-col>
           <el-col :span="1">
@@ -29,40 +29,40 @@
         </el-row>
       </el-card>
   
-      <!-- 结果列表 -->
+      <!-- Results List -->
       <el-card>
         <el-table :data="detailList" stripe style="width: 100%">
           <el-table-column
             type="index"
-            label="序号"
+            label="No."
             width="180"
           ></el-table-column>
           <el-table-column prop="id" label="ID" width="180"></el-table-column>
           <el-table-column
             prop="sportType"
-            label="运动类型"
+            label="Sport Type"
             width="180"
           ></el-table-column>
           <el-table-column
             prop="disease"
-            label="禁忌疾病"
+            label="Contraindicated Diseases"
             width="180"
           ></el-table-column>
   
           <el-table-column
             prop="method"
-            label="运动方法"
+            label="Exercise Method"
             width="180"
           ></el-table-column>
   
           <el-table-column
             prop="notes"
-            label="注意事项"
+            label="Notes"
             width="180"
           ></el-table-column>
   
-          <el-table-column label="操作" width="180">
-            <!-- 删除和修改按钮 -->
+          <el-table-column label="Actions" width="180">
+            <!-- Delete and Edit Buttons -->
             <template slot-scope="scope">
               <el-button
                 @click="openEditUi(scope.row.id)"
@@ -81,7 +81,7 @@
         </el-table>
       </el-card>
   
-      <!-- 分页功能 -->
+      <!-- Pagination -->
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -93,28 +93,28 @@
       >
       </el-pagination>
   
-      <!-- 用户编辑信息弹出框 -->
+      <!-- User Edit Information Dialog -->
       <el-dialog
         @close="clearForm"
         :title="title"
         :visible.sync="dialogFormVisible"
       >
         <el-form :model="detailForm" ref="detailFormRef" >
-          <el-form-item label="运动类型" prop="sportType" :label-width="formLabelWidth">
+          <el-form-item label="Sport Type" prop="sportType" :label-width="formLabelWidth">
             <el-input v-model="detailForm.sportType" autocomplete="off"></el-input>
           </el-form-item>
   
           <el-form-item
-             label="禁忌疾病" prop="disease" :label-width="formLabelWidth">
+             label="Contraindicated Diseases" prop="disease" :label-width="formLabelWidth">
             <el-input v-model="detailForm.disease" autocomplete="off"></el-input>
           </el-form-item>
   
-          <el-form-item label="运动方法" prop="method" :label-width="formLabelWidth">
+          <el-form-item label="Exercise Method" prop="method" :label-width="formLabelWidth">
             <el-input v-model="detailForm.method" autocomplete="off"></el-input>
           </el-form-item>
   
           <el-form-item
-            label="注意事项" prop="notes" :label-width="formLabelWidth">
+            label="Notes" prop="notes" :label-width="formLabelWidth">
             <el-input v-model="detailForm.notes" autocomplete="off"></el-input>
           </el-form-item>
   
@@ -122,8 +122,8 @@
         </el-form>
   
         <div slot="footer" class="dialog-footer">
-          <el-button @click="dialogFormVisible = false">取 消</el-button>
-          <el-button type="primary" @click="saveDetail">确 定</el-button>
+          <el-button @click="dialogFormVisible = false">Cancel</el-button>
+          <el-button type="primary" @click="saveDetail">Confirm</el-button>
         </div>
       </el-dialog>
     </div>
@@ -152,7 +152,7 @@
   
         rules: {
           sportType: [
-            { required: true, message: "请输入运动类型", trigger: "blur" }
+            { required: true, message: "请输入Sport Type", trigger: "blur" }
           ]
         },
       };
@@ -171,7 +171,7 @@
           //提交验证给后台
           console.log(this.detailtForm)
           sportApi.saveDetail(this.detailForm).then((response) => {
-            //成功提示
+            //成功Confirm
             this.$message({
               message: response.message,
               type: "success",
@@ -191,7 +191,7 @@
       clearForm() {
         this.detailForm = {
         };
-        //清除表单校验的提示信息
+        //清除表单校验的Confirm信息
         this.$refs.detailFormRef.clearValidate();
       },
       handleSizeChange(pageSize) {
@@ -219,9 +219,9 @@
       openEditUi(id) {
         console.log(id)
         if (id == null) {
-          this.title = "新增运动详情";
+          this.title = "Add Sport Details";
         } else {
-          this.title = "修改运动详情";
+          this.title = "Edit Sport Details";
           //根据id查询用户数据
           sportApi.getDetailById(id).then((response) => {
             this.detailForm = response.data;
@@ -233,9 +233,9 @@
   
   
       deleteDetail(detail) {
-        this.$confirm(`确认删除 ${detail.sportType} 这个运动详情吗？`, "提示", {
-          confirmButtonText: "确定",
-          cancelButtonText: "取消",
+        this.$confirm(`Are you sure you want to delete ${detail.sportType} this sport detail?`, "Confirm", {
+          confirmButtonText: "Confirm",
+          cancelButtonText: "Cancel",
           type: "warning",
         })
           .then(() => {
@@ -250,7 +250,7 @@
           .catch(() => {
             this.$message({
               type: "info",
-              message: "已取消删除",
+              message: "已Cancel删除",
             });
           });
       },

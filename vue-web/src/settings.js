@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '个人健康管理系统',
+  title: 'Personal Health Management System',
 
   /**
    * @type {boolean} true | false

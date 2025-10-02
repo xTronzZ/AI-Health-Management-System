@@ -2,7 +2,7 @@
   <div class="box_Detail">
     <div class="top_area">
       <p @click="home" style="cursor: pointer">
-        <i class="el-icon-s-home"></i>返回主页
+        <i class="el-icon-s-home"></i>Back to Home
       </p>
     </div>
     <div class="box1">
@@ -41,46 +41,46 @@
       ></el-image>
 
       <div class="info1">
-        <div class="info-item"><h1>运动详情</h1></div>
+        <div class="info-item"><h1>Sport Details</h1></div>
         <div class="info-item" style="">
-          运动种类：{{ detailInfo.sportType }}
+          Sport Type: {{ detailInfo.sportType }}
         </div>
-        <div class="info-item">适宜时间：{{ detailInfo.suitableTime }}</div>
+        <div class="info-item">Suitable Time: {{ detailInfo.suitableTime }}</div>
         <div class="info-item">
-          运动心率：{{ detailInfo.suitableHeartRate }}
+          Exercise Heart Rate: {{ detailInfo.suitableHeartRate }}
         </div>
         <div class="info-item">
-          适宜频率：{{ detailInfo.suitableFrequency }}
+          Suitable Frequency: {{ detailInfo.suitableFrequency }}
         </div>
-        <div class="info-item">推荐速度：{{ detailInfo.recommendedSpeed }}</div>
+        <div class="info-item">Recommended Speed: {{ detailInfo.recommendedSpeed }}</div>
       </div>
     </div>
     <div class="box2">
       <div class="button1">
         <button class="buttonDetail" @click="showBox('forbiddenDiseases')">
-          禁忌疾病
+          Contraindicated Diseases
         </button>
         <button class="buttonDetail" @click="showBox('methodIntroduction')">
-          方法介绍
+          Method Introduction
         </button>
         <button class="buttonDetail" @click="showBox('attentionItems')">
-          注意事项
+          Notes
         </button>
       </div>
     </div>
     <div class="box3">
       <div class="card" v-if="showForbiddenDiseases">
-        <div class="card-header">{{ detailInfo.sportType }}禁忌疾病</div>
+        <div class="card-header">{{ detailInfo.sportType }}Contraindicated Diseases</div>
         <div class="card-body">{{ detailInfo.disease }}</div>
       </div>
 
       <div class="card" v-if="showMethodIntroduction">
-        <div class="card-header">{{ detailInfo.sportType }}方法介绍</div>
+        <div class="card-header">{{ detailInfo.sportType }}Method Introduction</div>
         <div class="card-body">{{ detailInfo.method }}</div>
       </div>
 
       <div class="card" v-if="showAttentionItems">
-        <div class="card-header">{{ detailInfo.sportType }}注意事项</div>
+        <div class="card-header">{{ detailInfo.sportType }}Notes</div>
         <div class="card-body">{{ detailInfo.notes }}</div>
       </div>
     </div>
